@@ -1,0 +1,18 @@
+{
+  "name": "EyeSpy",
+  "short_name": "EyeSpy",
+  "description": "Daily scavenger hunt — find real-world objects matching today's words",
+  "start_url": "/EyeSpy/",
+  "display": "standalone",
+  "background_color": "#1d2021",
+  "theme_color": "#fe8019",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/EyeSpy/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

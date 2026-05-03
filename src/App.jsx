@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 
 // ─── VERSION ──────────────────────────────────────────────────────────────────
-const VERSION = "1.0.0";
+const VERSION = "1.2.3";
 
 // ─── GRUVBOX PALETTES ─────────────────────────────────────────────────────────
 const GV_DARK = {
@@ -33,76 +33,196 @@ const ThemeContext = createContext(GV_DARK);
 
 // ─── WORD BANK ────────────────────────────────────────────────────────────────
 const WORD_BANK = [
-  { id:"c01", category:"Color",   word:"Red"      },
-  { id:"c02", category:"Color",   word:"Blue"     },
-  { id:"c03", category:"Color",   word:"Green"    },
-  { id:"c04", category:"Color",   word:"Yellow"   },
-  { id:"c05", category:"Color",   word:"Orange"   },
-  { id:"c06", category:"Color",   word:"Purple"   },
-  { id:"c07", category:"Color",   word:"Pink"     },
-  { id:"c08", category:"Color",   word:"White"    },
-  { id:"c09", category:"Color",   word:"Black"    },
-  { id:"c10", category:"Color",   word:"Brown"    },
-  { id:"n01", category:"Number",  word:"One"      },
-  { id:"n02", category:"Number",  word:"Two"      },
-  { id:"n03", category:"Number",  word:"Three"    },
-  { id:"n04", category:"Number",  word:"Four"     },
-  { id:"n05", category:"Number",  word:"Five"     },
-  { id:"n06", category:"Number",  word:"Six"      },
-  { id:"n07", category:"Number",  word:"Seven"    },
-  { id:"n08", category:"Number",  word:"Eight"    },
-  { id:"n09", category:"Number",  word:"Nine"     },
-  { id:"n10", category:"Number",  word:"Ten"      },
-  { id:"s01", category:"Shape",   word:"Round"    },
-  { id:"s02", category:"Shape",   word:"Square"   },
-  { id:"s03", category:"Shape",   word:"Triangle" },
-  { id:"s04", category:"Shape",   word:"Oval"     },
-  { id:"s05", category:"Shape",   word:"Star"     },
-  { id:"s06", category:"Shape",   word:"Diamond"  },
-  { id:"s07", category:"Shape",   word:"Heart"    },
-  { id:"z01", category:"Size",    word:"Tiny"     },
-  { id:"z02", category:"Size",    word:"Giant"    },
-  { id:"z03", category:"Size",    word:"Tall"     },
-  { id:"z04", category:"Size",    word:"Wide"     },
-  { id:"z05", category:"Size",    word:"Flat"     },
-  { id:"a01", category:"Animal",  word:"Dog"      },
-  { id:"a02", category:"Animal",  word:"Cat"      },
-  { id:"a03", category:"Animal",  word:"Bird"     },
-  { id:"a04", category:"Animal",  word:"Fish"     },
-  { id:"a05", category:"Animal",  word:"Bug"      },
-  { id:"o01", category:"Object",  word:"Wheel"    },
-  { id:"o02", category:"Object",  word:"Door"     },
-  { id:"o03", category:"Object",  word:"Sign"     },
-  { id:"o04", category:"Object",  word:"Window"   },
-  { id:"o05", category:"Object",  word:"Bottle"   },
-  { id:"o06", category:"Object",  word:"Box"      },
-  { id:"o07", category:"Object",  word:"Key"      },
-  { id:"o08", category:"Object",  word:"Ladder"   },
-  { id:"t01", category:"Texture", word:"Shiny"    },
-  { id:"t02", category:"Texture", word:"Rough"    },
-  { id:"t03", category:"Texture", word:"Fuzzy"    },
-  { id:"t04", category:"Texture", word:"Smooth"   },
-  { id:"t05", category:"Texture", word:"Striped"  },
-  { id:"t06", category:"Texture", word:"Spotted"  },
-  { id:"st01",category:"State",   word:"Broken"   },
-  { id:"st02",category:"State",   word:"Stacked"  },
-  { id:"st03",category:"State",   word:"Moving"   },
-  { id:"st04",category:"State",   word:"Open"     },
-  { id:"st05",category:"State",   word:"Closed"   },
-  { id:"st06",category:"State",   word:"Bent"     },
-  { id:"st07",category:"State",   word:"Old"      },
-  { id:"m01", category:"Material",word:"Wooden"   },
-  { id:"m02", category:"Material",word:"Metal"    },
-  { id:"m03", category:"Material",word:"Glass"    },
-  { id:"m04", category:"Material",word:"Plastic"  },
-  { id:"m05", category:"Material",word:"Stone"    },
-  { id:"nat01",category:"Nature", word:"Leaf"     },
-  { id:"nat02",category:"Nature", word:"Rock"     },
-  { id:"nat03",category:"Nature", word:"Flower"   },
-  { id:"nat04",category:"Nature", word:"Tree"     },
-  { id:"nat05",category:"Nature", word:"Cloud"    },
-  { id:"nat06",category:"Nature", word:"Water"    },
-  { id:"nat07",category:"Nature", word:"Dirt"     },
+  // ── DESCRIPTORS (adjectives) ──
+  { id:"d001", type:"descriptor", word:"Red"        },
+  { id:"d002", type:"descriptor", word:"Blue"       },
+  { id:"d003", type:"descriptor", word:"Green"      },
+  { id:"d004", type:"descriptor", word:"Yellow"     },
+  { id:"d005", type:"descriptor", word:"Orange"     },
+  { id:"d006", type:"descriptor", word:"Purple"     },
+  { id:"d007", type:"descriptor", word:"Pink"       },
+  { id:"d008", type:"descriptor", word:"White"      },
+  { id:"d009", type:"descriptor", word:"Black"      },
+  { id:"d010", type:"descriptor", word:"Brown"      },
+  { id:"d011", type:"descriptor", word:"Gray"       },
+  { id:"d012", type:"descriptor", word:"Silver"     },
+  { id:"d013", type:"descriptor", word:"Gold"       },
+  { id:"d014", type:"descriptor", word:"Teal"       },
+  { id:"d015", type:"descriptor", word:"Maroon"     },
+  { id:"d016", type:"descriptor", word:"Navy"       },
+  { id:"d017", type:"descriptor", word:"Turquoise"  },
+  { id:"d018", type:"descriptor", word:"Beige"      },
+  { id:"d019", type:"descriptor", word:"Cream"      },
+  { id:"d020", type:"descriptor", word:"Colorful"   },
+  { id:"d021", type:"descriptor", word:"Tiny"       },
+  { id:"d022", type:"descriptor", word:"Giant"      },
+  { id:"d023", type:"descriptor", word:"Tall"       },
+  { id:"d024", type:"descriptor", word:"Wide"       },
+  { id:"d025", type:"descriptor", word:"Flat"       },
+  { id:"d026", type:"descriptor", word:"Narrow"     },
+  { id:"d027", type:"descriptor", word:"Thick"      },
+  { id:"d028", type:"descriptor", word:"Short"      },
+  { id:"d029", type:"descriptor", word:"Long"       },
+  { id:"d030", type:"descriptor", word:"Deep"       },
+  { id:"d031", type:"descriptor", word:"Round"      },
+  { id:"d032", type:"descriptor", word:"Square"     },
+  { id:"d033", type:"descriptor", word:"Triangular" },
+  { id:"d034", type:"descriptor", word:"Oval"       },
+  { id:"d035", type:"descriptor", word:"Spiral"     },
+  { id:"d036", type:"descriptor", word:"Curved"     },
+  { id:"d037", type:"descriptor", word:"Crooked"    },
+  { id:"d038", type:"descriptor", word:"Straight"   },
+  { id:"d039", type:"descriptor", word:"Jagged"     },
+  { id:"d040", type:"descriptor", word:"Hollow"     },
+  { id:"d041", type:"descriptor", word:"Shiny"      },
+  { id:"d042", type:"descriptor", word:"Rough"      },
+  { id:"d043", type:"descriptor", word:"Fuzzy"      },
+  { id:"d044", type:"descriptor", word:"Smooth"     },
+  { id:"d045", type:"descriptor", word:"Striped"    },
+  { id:"d046", type:"descriptor", word:"Spotted"    },
+  { id:"d047", type:"descriptor", word:"Bumpy"      },
+  { id:"d048", type:"descriptor", word:"Cracked"    },
+  { id:"d049", type:"descriptor", word:"Wet"        },
+  { id:"d050", type:"descriptor", word:"Rusty"      },
+  { id:"d051", type:"descriptor", word:"Dirty"      },
+  { id:"d052", type:"descriptor", word:"Soft"       },
+  { id:"d053", type:"descriptor", word:"Hard"       },
+  { id:"d054", type:"descriptor", word:"Woven"      },
+  { id:"d055", type:"descriptor", word:"Faded"      },
+  { id:"d056", type:"descriptor", word:"Old"        },
+  { id:"d057", type:"descriptor", word:"New"        },
+  { id:"d058", type:"descriptor", word:"Bright"     },
+  { id:"d059", type:"descriptor", word:"Dark"       },
+  { id:"d060", type:"descriptor", word:"Sharp"      },
+  { id:"d061", type:"descriptor", word:"Dull"       },
+  { id:"d062", type:"descriptor", word:"Puffy"      },
+  { id:"d063", type:"descriptor", word:"Transparent"},
+  { id:"d064", type:"descriptor", word:"Patterned"  },
+  { id:"d065", type:"descriptor", word:"Wooden"     },
+  { id:"d066", type:"descriptor", word:"Metal"      },
+  { id:"d067", type:"descriptor", word:"Plastic"    },
+  { id:"d068", type:"descriptor", word:"Stone"      },
+  { id:"d069", type:"descriptor", word:"Rubber"     },
+  { id:"d070", type:"descriptor", word:"Fabric"     },
+  { id:"d071", type:"descriptor", word:"Concrete"   },
+  { id:"d072", type:"descriptor", word:"Brick"      },
+  { id:"d073", type:"descriptor", word:"Glass"      },
+  { id:"d074", type:"descriptor", word:"Paper"      },
+  { id:"d075", type:"descriptor", word:"Leather"    },
+
+  // ── NOUNS ──
+  { id:"n001", type:"noun", word:"Door"       },
+  { id:"n002", type:"noun", word:"Window"     },
+  { id:"n003", type:"noun", word:"Sign"       },
+  { id:"n004", type:"noun", word:"Wheel"      },
+  { id:"n005", type:"noun", word:"Bottle"     },
+  { id:"n006", type:"noun", word:"Box"        },
+  { id:"n007", type:"noun", word:"Key"        },
+  { id:"n008", type:"noun", word:"Ladder"     },
+  { id:"n009", type:"noun", word:"Chair"      },
+  { id:"n010", type:"noun", word:"Table"      },
+  { id:"n011", type:"noun", word:"Fence"      },
+  { id:"n012", type:"noun", word:"Pipe"       },
+  { id:"n013", type:"noun", word:"Wire"       },
+  { id:"n014", type:"noun", word:"Bucket"     },
+  { id:"n015", type:"noun", word:"Hook"       },
+  { id:"n016", type:"noun", word:"Rope"       },
+  { id:"n017", type:"noun", word:"Bell"       },
+  { id:"n018", type:"noun", word:"Nail"       },
+  { id:"n019", type:"noun", word:"Bolt"       },
+  { id:"n020", type:"noun", word:"Tree"       },
+  { id:"n021", type:"noun", word:"Flower"     },
+  { id:"n022", type:"noun", word:"Rock"       },
+  { id:"n023", type:"noun", word:"Leaf"       },
+  { id:"n024", type:"noun", word:"Branch"     },
+  { id:"n025", type:"noun", word:"Puddle"     },
+  { id:"n026", type:"noun", word:"Vine"       },
+  { id:"n027", type:"noun", word:"Shadow"     },
+  { id:"n028", type:"noun", word:"Cloud"      },
+  { id:"n029", type:"noun", word:"Dog"        },
+  { id:"n030", type:"noun", word:"Cat"        },
+  { id:"n031", type:"noun", word:"Bird"       },
+  { id:"n032", type:"noun", word:"Bug"        },
+  { id:"n033", type:"noun", word:"Spider"     },
+  { id:"n034", type:"noun", word:"Squirrel"   },
+  { id:"n035", type:"noun", word:"Duck"       },
+  { id:"n036", type:"noun", word:"Rabbit"     },
+  { id:"n037", type:"noun", word:"Deer"       },
+  { id:"n038", type:"noun", word:"Frog"       },
+  { id:"n039", type:"noun", word:"Can"        },
+  { id:"n040", type:"noun", word:"Cup"        },
+  { id:"n041", type:"noun", word:"Wrapper"    },
+  { id:"n042", type:"noun", word:"Straw"      },
+  { id:"n043", type:"noun", word:"Tire"       },
+  { id:"n044", type:"noun", word:"Bumper"     },
+  { id:"n045", type:"noun", word:"Mirror"     },
+  { id:"n046", type:"noun", word:"Antenna"    },
+  { id:"n047", type:"noun", word:"Bench"      },
+  { id:"n048", type:"noun", word:"Gate"       },
+  { id:"n049", type:"noun", word:"Post"       },
+  { id:"n050", type:"noun", word:"Step"       },
+  { id:"n051", type:"noun", word:"Wall"       },
+  { id:"n052", type:"noun", word:"Roof"       },
+  { id:"n053", type:"noun", word:"Chimney"    },
+  { id:"n054", type:"noun", word:"Drain"      },
+  { id:"n055", type:"noun", word:"Crack"      },
+  { id:"n056", type:"noun", word:"Pile"       },
+  { id:"n057", type:"noun", word:"Stack"      },
+  { id:"n058", type:"noun", word:"Bundle"     },
+  { id:"n059", type:"noun", word:"Puddle"     },
+  { id:"n060", type:"noun", word:"Patch"      },
+  { id:"n061", type:"noun", word:"Bridge"     },
+  { id:"n062", type:"noun", word:"Tunnel"     },
+  { id:"n063", type:"noun", word:"Pole"       },
+  { id:"n064", type:"noun", word:"Cone"       },
+  { id:"n065", type:"noun", word:"Barrel"     },
+  { id:"n066", type:"noun", word:"Crate"      },
+  { id:"n067", type:"noun", word:"Shed"       },
+  { id:"n068", type:"noun", word:"Hydrant"    },
+  { id:"n069", type:"noun", word:"Mailbox"    },
+  { id:"n070", type:"noun", word:"Dumpster"   },
+  { id:"n071", type:"noun", word:"Cart"       },
+  { id:"n072", type:"noun", word:"Tarp"       },
+  { id:"n073", type:"noun", word:"Flag"       },
+  { id:"n074", type:"noun", word:"Lock"       },
+  { id:"n075", type:"noun", word:"Hose"       },
+
+  // ── VERBS / STATES ──
+  { id:"v001", type:"verb", word:"Leaning"     },
+  { id:"v002", type:"verb", word:"Stacked"     },
+  { id:"v003", type:"verb", word:"Moving"      },
+  { id:"v004", type:"verb", word:"Open"        },
+  { id:"v005", type:"verb", word:"Closed"      },
+  { id:"v006", type:"verb", word:"Hanging"     },
+  { id:"v007", type:"verb", word:"Spinning"    },
+  { id:"v008", type:"verb", word:"Dripping"    },
+  { id:"v009", type:"verb", word:"Folded"      },
+  { id:"v010", type:"verb", word:"Tangled"     },
+  { id:"v011", type:"verb", word:"Broken"      },
+  { id:"v012", type:"verb", word:"Locked"      },
+  { id:"v013", type:"verb", word:"Chained"     },
+  { id:"v014", type:"verb", word:"Parked"      },
+  { id:"v015", type:"verb", word:"Floating"    },
+  { id:"v016", type:"verb", word:"Growing"     },
+  { id:"v017", type:"verb", word:"Fallen"      },
+  { id:"v018", type:"verb", word:"Buried"      },
+  { id:"v019", type:"verb", word:"Wrapped"     },
+  { id:"v020", type:"verb", word:"Tied"        },
+  { id:"v021", type:"verb", word:"Painted"     },
+  { id:"v022", type:"verb", word:"Bent"        },
+  { id:"v023", type:"verb", word:"Twisted"     },
+  { id:"v024", type:"verb", word:"Balanced"    },
+  { id:"v025", type:"verb", word:"Scattered"   },
+  { id:"v026", type:"verb", word:"Grouped"     },
+  { id:"v027", type:"verb", word:"Upside-down" },
+  { id:"v028", type:"verb", word:"Overflowing" },
+  { id:"v029", type:"verb", word:"Rusted"      },
+  { id:"v030", type:"verb", word:"Fenced"      },
+  { id:"v031", type:"verb", word:"Abandoned"   },
+  { id:"v032", type:"verb", word:"Patched"     },
+  { id:"v033", type:"verb", word:"Labeled"     },
+  { id:"v034", type:"verb", word:"Numbered"    },
+  { id:"v035", type:"verb", word:"Attached"    },
 ];
 
 // ─── CONSTANTS ────────────────────────────────────────────────────────────────
@@ -121,13 +241,77 @@ const COLOR_OPTIONS = [
 ];
 const CHANGELOG = [
   {
+    version: "1.2.3",
+    entries: [
+      "Photo submission now lets you choose from your camera roll or take a new photo",
+    ],
+  },
+  {
+    version: "1.2.2",
+    entries: [
+      "Update notifications now show only the latest changes instead of full history",
+    ],
+  },
+  {
+    version: "1.2.1",
+    entries: [
+      "Tap the EYESPY title anywhere to open the About sheet",
+      "About sheet shows version, description, credits, terms, and full version history",
+      "Tap any player on the leaderboard to view their stats and recent finds",
+    ],
+  },
+  {
+    version: "1.2.0",
+    entries: [
+      "Redesigned word bank — words are now Descriptors, Nouns, and Verbs/States for richer daily combos",
+      "Streak bonus — submit 3+ days in a row for +2 pts on your first find each day 🔥",
+      "Duplicate prevention — same word combination cannot be submitted twice in one day",
+      "Images now purged from the database after 48 hours, not just hidden",
+      "Word categories hidden from UI — just the word, no spoilers",
+      "Suggest a Word — players can submit words for admin approval",
+      "Admin Words panel — approve or reject player word suggestions",
+    ],
+  },
+  {
+    version: "1.1.1",
+    entries: [
+      "Responsive layout fixes — app now fits all screen sizes correctly",
+      "Nav tabs scroll horizontally when Admin tab is visible",
+      "First player created is automatically set as admin",
+    ],
+  },
+  {
+    version: "1.1.0",
+    entries: [
+      "Profile sheet — tap your avatar to see stats, switch games, toggle theme, or switch player",
+      "Admin tab — manage players, view games, reset submissions and champions (PIN required)",
+      "Theme toggle now accessible from the profile sheet",
+    ],
+  },
+  {
+    version: "1.0.2",
+    entries: [
+      "Daily words are now identical for all players on the same day — no more race conditions",
+      "PWA manifest added — install EyeSpy to your home screen for the best experience",
+      "Improved home screen icon support on iOS and Android",
+    ],
+  },
+  {
+    version: "1.0.1",
+    entries: [
+      "Nav moved to top of screen",
+      "Join codes are now shown to game creators and can be edited to something memorable",
+      "Submissions now appear correctly in Feed and Board",
+      "App icon added",
+    ],
+  },
+  {
     version: "1.0.0",
     entries: [
       "EyeSpy is live! Find real-world objects matching today's daily words.",
       "Score points for every descriptor you match — match them all for a bonus!",
       "Create or join a game with friends and family using a join code.",
       "Weekly leaderboard resets every Monday at 4 AM CST.",
-      "Hall of Champions tracks Top Score and Most Finds each week.",
     ],
   },
 ];
@@ -177,22 +361,103 @@ function getTodayKey() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
 }
-function generateDailyWords() {
-  const count = 3 + Math.floor(Math.random() * 3); // 3, 4, or 5
-  const categories = [...new Set(WORD_BANK.map(w => w.category))];
-  const shuffledCats = categories.sort(() => Math.random() - 0.5).slice(0, count);
-  return shuffledCats.map(cat => {
-    const pool = WORD_BANK.filter(w => w.category === cat);
-    return pool[Math.floor(Math.random() * pool.length)];
-  });
+function seededRandom(seed) {
+  let h = 0;
+  for (let i = 0; i < seed.length; i++) {
+    h = Math.imul(31, h) + seed.charCodeAt(i) | 0;
+  }
+  return function() {
+    h = Math.imul(h ^ (h >>> 16), 0x45d9f3b) | 0;
+    h = Math.imul(h ^ (h >>> 16), 0x45d9f3b) | 0;
+    return ((h ^ (h >>> 16)) >>> 0) / 0xffffffff;
+  };
+}
+
+function generateDailyWordsFromBank(bank, dateKey) {
+  const rand = seededRandom(dateKey);
+  const descriptors = bank.filter(w => w.type === "descriptor");
+  const nouns       = bank.filter(w => w.type === "noun");
+  const verbs       = bank.filter(w => w.type === "verb");
+
+  function pick(pool, n) {
+    const shuffled = [...pool].sort(() => rand() - 0.5);
+    return shuffled.slice(0, n);
+  }
+
+  const dCount = rand() > 0.4 ? 2 : 1;
+  const nCount = rand() > 0.4 ? 2 : 1;
+  const vCount = rand() > 0.5 ? 1 : 0;
+
+  return [
+    ...pick(descriptors, dCount),
+    ...pick(nouns, nCount),
+    ...pick(verbs, vCount),
+  ];
 }
 
 // ─── SCORING ─────────────────────────────────────────────────────────────────
 const MATCH_POINTS = [0, 1, 4, 10, 20, 35];
-function scoreSubmission(matchedCount, totalWords) {
+
+function getStreakLength(submissions, playerId) {
+  const days = [...new Set(
+    submissions
+      .filter(s => s.playerId === playerId)
+      .map(s => {
+        const d = new Date(s.timestamp);
+        return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+      })
+  )].sort();
+
+  if (days.length === 0) return 0;
+
+  const today = getTodayKey();
+  const yesterday = (() => {
+    const d = new Date(); d.setDate(d.getDate() - 1);
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  })();
+
+  if (!days.includes(today) && !days.includes(yesterday)) return 0;
+
+  let streak = 1;
+  for (let i = days.length - 1; i > 0; i--) {
+    const curr = new Date(days[i]);
+    const prev = new Date(days[i - 1]);
+    const diff = Math.round((curr - prev) / 86400000);
+    if (diff === 1) { streak++; }
+    else { break; }
+  }
+  return streak;
+}
+
+function getStreakBonus(submissions, playerId) {
+  const streak = getStreakLength(submissions, playerId);
+  if (streak < 3) return 0;
+  const today = getTodayKey();
+  const alreadySubmittedToday = submissions.some(s => {
+    if (s.playerId !== playerId) return false;
+    const d = new Date(s.timestamp);
+    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+    return key === today;
+  });
+  return alreadySubmittedToday ? 0 : 2;
+}
+
+function scoreSubmission(matchedCount, totalWords, streakBonus = 0) {
   const base = MATCH_POINTS[Math.min(matchedCount, 5)] || 0;
-  const bonus = matchedCount === totalWords && totalWords > 0 ? 5 : 0;
-  return { base, bonus, total: base + bonus, matchedCount, totalWords };
+  const fullBonus = matchedCount === totalWords && totalWords > 0 ? 5 : 0;
+  const total = base + fullBonus + streakBonus;
+  return { base, fullBonus, streakBonus, total, matchedCount, totalWords };
+}
+
+function hasDuplicateMatchToday(submissions, playerId, matchedWordIds, dailyKey) {
+  if (!matchedWordIds || matchedWordIds.length === 0) return false;
+  const sorted = [...matchedWordIds].sort().join(",");
+  return submissions.some(s => {
+    if (s.playerId !== playerId) return false;
+    if (s.dailyKey !== dailyKey) return false;
+    const prevSorted = [...(s.matchedWords || []).map(w => w.id)].sort().join(",");
+    return prevSorted === sorted;
+  });
 }
 
 // ─── IMAGE HELPERS ────────────────────────────────────────────────────────────
@@ -305,7 +570,6 @@ function WordChip({ word, matched, selected, onToggle, disabled }) {
         padding:"6px 14px", fontSize:13, fontWeight:700, cursor: disabled ? "default" : "pointer",
         fontFamily:"inherit", transition:"background 0.15s" }}>
       {word.word}
-      <span style={{ fontSize:10, opacity:0.75, marginLeft:4 }}>({word.category})</span>
     </button>
   );
 }
@@ -335,38 +599,76 @@ function WinnerBanner({ winner, periodLabel, onDismiss }) {
 }
 
 // ─── WELCOME MODAL ────────────────────────────────────────────────────────────
-function WelcomeModal({ isFirstTime, onAccept }) {
+function WelcomeModal({ isFirstTime, onAccept, onTitleClick }) {
   const GV = useContext(ThemeContext);
+  const latestEntry = CHANGELOG[0];
+
   return (
-    <div style={{ background:GV.bg0, minHeight:"100vh", display:"flex", alignItems:"center",
-      justifyContent:"center", padding:24, fontFamily:"'Courier Prime',monospace" }}>
+    <div style={{ background:GV.bg0, minHeight:"100vh", display:"flex",
+      alignItems:"center", justifyContent:"center", padding:"24px 16px",
+      fontFamily:"'Courier Prime',monospace", boxSizing:"border-box",
+      width:"100%" }}>
       <div style={{ maxWidth:400, width:"100%" }}>
+
+        {/* Title */}
         <div style={{ textAlign:"center", marginBottom:24 }}>
-          <span style={{ fontSize:40 }}>👁️</span>
-          <div style={{ fontSize:28, fontWeight:900, color:GV.orangeB, letterSpacing:2 }}>EYESPY</div>
-          <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3 }}>SCAVENGER HUNT</div>
-        </div>
-        {CHANGELOG.map(c => (
-          <div key={c.version} style={{ marginBottom:16 }}>
-            <div style={{ color:GV.yellowB, fontSize:12, fontWeight:700, marginBottom:8 }}>
-              v{c.version}
-            </div>
-            {c.entries.map((e,i) => (
-              <div key={i} style={{ color:GV.fg1, fontSize:12, marginBottom:4, paddingLeft:12 }}>
-                • {e}
-              </div>
-            ))}
+          <button onClick={onTitleClick} style={{ background:"none",
+            border:"none", cursor:"pointer", padding:0,
+            fontFamily:"inherit" }}>
+            <span style={{ fontSize:40 }}>👁️</span>
+            <div style={{ fontSize:28, fontWeight:900, color:GV.orangeB,
+              letterSpacing:2 }}>EYESPY</div>
+          </button>
+          <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3 }}>
+            SCAVENGER HUNT
           </div>
-        ))}
-        <div style={{ background:GV.bg1, borderRadius:10, padding:12, marginBottom:20,
-          color:GV.fg3, fontSize:11, lineHeight:1.6 }}>
-          By playing EyeSpy you agree to keep it fun, family-friendly, and safe.
-          Only photograph things you're allowed to photograph. Play responsibly.
         </div>
+
+        {/* Changelog section */}
+        <div style={{ marginBottom:20 }}>
+          {isFirstTime ? (
+            <>
+              <div style={{ color:GV.yellowB, fontSize:12, fontWeight:700,
+                marginBottom:8 }}>
+                Welcome to EyeSpy!
+              </div>
+              {latestEntry.entries.map((e,i) => (
+                <div key={i} style={{ color:GV.fg1, fontSize:12,
+                  marginBottom:4, paddingLeft:12 }}>• {e}</div>
+              ))}
+            </>
+          ) : (
+            <>
+              <div style={{ color:GV.yellowB, fontSize:12, fontWeight:700,
+                marginBottom:4 }}>
+                Updated to v{latestEntry.version}
+              </div>
+              <div style={{ color:GV.fg3, fontSize:10, letterSpacing:1,
+                marginBottom:10 }}>
+                WHAT'S NEW
+              </div>
+              {latestEntry.entries.map((e,i) => (
+                <div key={i} style={{ color:GV.fg1, fontSize:12,
+                  marginBottom:4, paddingLeft:12 }}>• {e}</div>
+              ))}
+            </>
+          )}
+        </div>
+
+        {/* Terms */}
+        <div style={{ background:GV.bg1, borderRadius:10, padding:12,
+          marginBottom:20, color:GV.fg3, fontSize:11, lineHeight:1.6 }}>
+          By playing EyeSpy you agree to keep it fun, family-friendly,
+          and safe. Only photograph things you are allowed to photograph.
+          Play responsibly.
+        </div>
+
+        {/* Button */}
         <button onClick={onAccept}
-          style={{ width:"100%", background:GV.orange, border:"none", borderRadius:12,
-            padding:"14px", color:GV.bg0, fontWeight:900, fontSize:16,
-            cursor:"pointer", fontFamily:"inherit", letterSpacing:1 }}>
+          style={{ width:"100%", background:GV.orange, border:"none",
+            borderRadius:12, padding:"14px", color:GV.bg0, fontWeight:900,
+            fontSize:16, cursor:"pointer", fontFamily:"inherit",
+            letterSpacing:1 }}>
           {isFirstTime ? "Let's Play! 👁️" : "Got It!"}
         </button>
       </div>
@@ -441,8 +743,9 @@ function PlayerModal({ player, onSave, onRemove, onClose, inputStyle, isEdit }) 
 function PlayerSelectScreen({ players, playersLoaded, onSelect, onAddPlayer }) {
   const GV = useContext(ThemeContext);
   return (
-    <div style={{ background:GV_DARK.bg0, minHeight:"100vh", padding:24,
-      fontFamily:"'Courier Prime',monospace", color:GV_DARK.fg }}>
+    <div style={{ background:GV_DARK.bg0, minHeight:"100vh", padding:"24px 16px",
+      fontFamily:"'Courier Prime',monospace", color:GV_DARK.fg,
+      boxSizing:"border-box", width:"100%" }}>
       <div style={{ textAlign:"center", marginBottom:32, paddingTop:24 }}>
         <span style={{ fontSize:40 }}>👁️</span>
         <div style={{ fontSize:28, fontWeight:900, color:GV_DARK.orangeB, letterSpacing:2 }}>EYESPY</div>
@@ -477,52 +780,90 @@ function PlayerSelectScreen({ players, playersLoaded, onSelect, onAddPlayer }) {
 }
 
 // ─── GAME SELECT SCREEN ───────────────────────────────────────────────────────
-function GameSelectScreen({ player, games, gamesLoaded, onSelect, onCreateGame, onJoinGame, onSwitchPlayer }) {
+function GameSelectScreen({ player, games, gamesLoaded, onSelect, onCreateGame, onJoinGame, onSwitchPlayer, onEditGameCode }) {
   const GV = useContext(ThemeContext);
   return (
-    <div style={{ background:GV.bg0, minHeight:"100vh", padding:24,
-      fontFamily:"'Courier Prime',monospace", color:GV.fg }}>
-      <div style={{ textAlign:"center", marginBottom:32, paddingTop:24 }}>
-        <span style={{ fontSize:40 }}>👁️</span>
+    <div style={{ background:GV.bg0, minHeight:"100vh", display:"flex", flexDirection:"column",
+      alignItems:"center", justifyContent:"center", padding:"24px 16px",
+      fontFamily:"'Courier Prime',monospace", boxSizing:"border-box", width:"100%" }}>
+      <div style={{ marginBottom:32, textAlign:"center" }}>
+        <span style={{ fontSize:36 }}>👁️</span>
         <div style={{ fontSize:28, fontWeight:900, color:GV.orangeB, letterSpacing:2 }}>EYESPY</div>
-        <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3, marginBottom:16 }}>SELECT A GAME</div>
-        <PlayerBadge player={player} />
+        <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3, marginBottom:12 }}>PLAYING AS</div>
+        <div style={{ display:"flex", alignItems:"center", gap:8, justifyContent:"center" }}>
+          <div style={{ width:28, height:28, borderRadius:"50%", background:player.color+"33",
+            border:`2px solid ${player.color}`, display:"flex", alignItems:"center",
+            justifyContent:"center", fontSize:14 }}>{player.emoji}</div>
+          <span style={{ color:player.color, fontWeight:700, fontSize:16 }}>{player.name}</span>
+        </div>
       </div>
-      {!gamesLoaded ? (
-        <div style={{ textAlign:"center", color:GV.fg3 }}>🔍 Loading…</div>
-      ) : games.length === 0 ? (
-        <div style={{ textAlign:"center", color:GV.fg3, fontSize:13, marginBottom:24 }}>
+
+      {!gamesLoaded && (
+        <div style={{ color:GV.fg3, fontSize:13, marginBottom:24 }}>Loading games…</div>
+      )}
+
+      {gamesLoaded && games.length > 0 && (
+        <div style={{ width:"100%", maxWidth:400, marginBottom:24 }}>
+          <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3, marginBottom:12 }}>SELECT GAME</div>
+          {games.map(g => (
+            <div key={g.id} style={{ marginBottom:10 }}>
+              <button onClick={() => onSelect(g)} style={{
+                width:"100%", padding:"16px 20px",
+                background:GV.bg1, border:`2px solid ${GV.bg2}`,
+                borderRadius:14, cursor:"pointer", display:"flex", alignItems:"center",
+                gap:14, fontFamily:"inherit",
+              }}>
+                <span style={{ fontSize:22 }}>👁️</span>
+                <div style={{ flex:1, textAlign:"left" }}>
+                  <div style={{ color:GV.fg, fontWeight:700, fontSize:15 }}>{g.name}</div>
+                  <div style={{ color:GV.fg3, fontSize:11, marginTop:2 }}>
+                    {g.members?.length || 0} player{g.members?.length !== 1 ? "s" : ""} · {g.periodMode || "weekly"}
+                  </div>
+                </div>
+                <span style={{ color:GV.orangeB, fontSize:18 }}>›</span>
+              </button>
+              {g.createdBy === player.id && (
+                <div style={{ display:"flex", alignItems:"center", gap:8, padding:"6px 8px",
+                  background:GV.bg0, borderRadius:"0 0 10px 10px",
+                  border:`1px solid ${GV.bg2}`, borderTop:"none" }}>
+                  <span style={{ color:GV.fg3, fontSize:10, letterSpacing:1 }}>CODE:</span>
+                  <span style={{ color:GV.yellowB, fontWeight:900, letterSpacing:3, fontSize:13 }}>{g.joinCode}</span>
+                  <button onClick={() => onEditGameCode(g)}
+                    style={{ marginLeft:"auto", background:"transparent", border:`1px solid ${GV.bg3}`,
+                      borderRadius:6, padding:"2px 8px", color:GV.fg3, fontSize:10,
+                      cursor:"pointer", fontFamily:"inherit" }}>
+                    Edit
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {gamesLoaded && games.length === 0 && (
+        <div style={{ color:GV.fg3, fontSize:13, marginBottom:24, textAlign:"center" }}>
           No games yet — create one or join with a code!
         </div>
-      ) : (
-        games.map(g => (
-          <button key={g.id} onClick={() => onSelect(g)}
-            style={{ width:"100%", background:GV.bg1, border:`1px solid ${GV.bg2}`,
-              borderRadius:12, padding:"14px 16px", marginBottom:10, cursor:"pointer",
-              textAlign:"left", fontFamily:"inherit" }}>
-            <div style={{ color:GV.fg, fontWeight:700 }}>{g.name}</div>
-            <div style={{ color:GV.fg3, fontSize:11, marginTop:2 }}>
-              {g.members?.length || 0} player{g.members?.length !== 1 ? "s" : ""} · {g.periodMode || "weekly"}
-            </div>
-          </button>
-        ))
       )}
-      <button onClick={onCreateGame}
-        style={{ width:"100%", background:GV.orange, border:"none", borderRadius:12,
-          padding:"12px", color:GV.bg0, fontWeight:700, cursor:"pointer",
-          fontFamily:"inherit", marginBottom:10 }}>
-        + Create Game
-      </button>
-      <button onClick={onJoinGame}
-        style={{ width:"100%", background:GV.bg1, border:`1px solid ${GV.bg2}`, borderRadius:12,
-          padding:"12px", color:GV.fg, cursor:"pointer", fontFamily:"inherit", marginBottom:24 }}>
-        Join with Code
-      </button>
-      <button onClick={onSwitchPlayer}
-        style={{ width:"100%", background:"transparent", border:"none",
-          color:GV.fg3, cursor:"pointer", fontFamily:"inherit", fontSize:12 }}>
-        ← Switch Player
-      </button>
+
+      <div style={{ display:"flex", flexDirection:"column", gap:10, width:"100%", maxWidth:400 }}>
+        <button onClick={onJoinGame} style={{
+          padding:"13px", background:"transparent",
+          border:`1px solid ${GV.blueB}`, borderRadius:12, color:GV.blueB,
+          fontSize:13, cursor:"pointer", fontFamily:"inherit", letterSpacing:1,
+        }}>Join a Game →</button>
+        <button onClick={onCreateGame} style={{
+          padding:"13px", background:`linear-gradient(135deg,${GV.orange},${GV.orangeB})`,
+          border:"none", borderRadius:12, color:GV.bg0,
+          fontSize:13, fontWeight:900, cursor:"pointer", fontFamily:"inherit", letterSpacing:1,
+        }}>+ Create New Game</button>
+        <button onClick={onSwitchPlayer} style={{
+          padding:"10px", background:"transparent",
+          border:"none", color:GV.fg3,
+          fontSize:12, cursor:"pointer", fontFamily:"inherit",
+        }}>Switch Player</button>
+      </div>
     </div>
   );
 }
@@ -531,29 +872,49 @@ function GameSelectScreen({ player, games, gamesLoaded, onSelect, onCreateGame, 
 function CreateGameModal({ onSave, onClose, inputStyle }) {
   const GV = useContext(ThemeContext);
   const [name, setName] = useState("");
+  const [code, setCode] = useState(() => Math.random().toString(36).substring(2,8).toUpperCase());
+  const [saving, setSaving] = useState(false);
+
   async function handleCreate() {
-    if (!name.trim()) return;
-    await onSave({ name: name.trim(), periodMode: "weekly", joinCode: generateJoinCode() });
+    if (!name.trim() || !code.trim()) return;
+    setSaving(true);
+    await onSave({ name: name.trim(), periodMode: "weekly", joinCode: code.trim().toUpperCase() });
+    setSaving(false);
   }
+
   return (
-    <div style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.8)",
-      display:"flex", alignItems:"center", justifyContent:"center", zIndex:200, padding:20 }}>
-      <div style={{ background:GV_DARK.bg1, borderRadius:16, padding:24, width:"100%", maxWidth:360 }}>
-        <div style={{ fontWeight:900, color:GV_DARK.orangeB, marginBottom:16 }}>Create Game</div>
-        <input value={name} onChange={e=>setName(e.target.value)} placeholder="Game name"
-          style={{ ...inputStyle, width:"100%", marginBottom:16, display:"block" }} />
-        <div style={{ display:"flex", gap:10 }}>
-          <button onClick={handleCreate}
-            style={{ flex:1, background:GV_DARK.orange, border:"none", borderRadius:10,
-              padding:"12px", color:GV_DARK.bg0, fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>
-            Create
-          </button>
-          <button onClick={onClose}
-            style={{ flex:1, background:GV_DARK.bg2, border:"none", borderRadius:10,
-              padding:"12px", color:GV_DARK.fg, cursor:"pointer", fontFamily:"inherit" }}>
-            Cancel
-          </button>
+    <div onClick={onClose} style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.88)",
+      zIndex:300, display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background:GV_DARK.bg1,
+        border:`1px solid ${GV_DARK.bg2}`, borderRadius:16, padding:24, width:"100%", maxWidth:400 }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
+          <span style={{ color:GV_DARK.fg, fontWeight:700, fontSize:16 }}>Create Game</span>
+          <button onClick={onClose} style={{ background:"none", border:"none", color:GV_DARK.fg3, fontSize:20, cursor:"pointer" }}>✕</button>
         </div>
+        <div style={{ marginBottom:16 }}>
+          <label style={{ color:GV_DARK.fg3, fontSize:11, letterSpacing:2, display:"block", marginBottom:8 }}>GAME NAME</label>
+          <input value={name} onChange={e => setName(e.target.value)}
+            placeholder="e.g. GrandPappy Family"
+            style={{ ...inputStyle, width:"100%", boxSizing:"border-box" }} />
+        </div>
+        <div style={{ marginBottom:24 }}>
+          <label style={{ color:GV_DARK.fg3, fontSize:11, letterSpacing:2, display:"block", marginBottom:4 }}>JOIN CODE</label>
+          <div style={{ color:GV_DARK.fg3, fontSize:10, marginBottom:8 }}>
+            Auto-generated — edit to make it memorable (e.g. FAMILY)
+          </div>
+          <input value={code}
+            onChange={e => setCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12))}
+            placeholder="JOIN CODE"
+            style={{ ...inputStyle, width:"100%", boxSizing:"border-box",
+              letterSpacing:4, fontSize:18, textAlign:"center", fontWeight:700 }} />
+        </div>
+        <button onClick={handleCreate} disabled={saving || !name.trim() || !code.trim()}
+          style={{ width:"100%", padding:"13px",
+            background: saving || !name.trim() ? GV_DARK.bg2 : `linear-gradient(135deg,${GV_DARK.orange},${GV_DARK.orangeB})`,
+            border:"none", borderRadius:12, color:GV_DARK.bg0, fontSize:14,
+            fontWeight:900, letterSpacing:2, cursor: saving ? "not-allowed" : "pointer", fontFamily:"inherit" }}>
+          {saving ? "CREATING…" : "CREATE GAME"}
+        </button>
       </div>
     </div>
   );
@@ -633,28 +994,362 @@ function ChampionsTab({ champions, players }) {
   );
 }
 
-// ─── RULES TAB ────────────────────────────────────────────────────────────────
-function RulesTab() {
+// ─── ABOUT SHEET ──────────────────────────────────────────────────────────────
+function AboutSheet({ onClose }) {
   const GV = useContext(ThemeContext);
-  const S = { section: { marginBottom:24 }, heading: { color:GV.orangeB, fontWeight:900,
-    fontSize:13, letterSpacing:2, marginBottom:10 }, body: { color:GV.fg1, fontSize:13, lineHeight:1.7 } };
+  return (
+    <div onClick={onClose} style={{ position:"fixed", inset:0,
+      background:"rgba(0,0,0,0.75)", zIndex:300,
+      display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        background:GV.bg1, borderRadius:"16px 16px 0 0",
+        width:"100%", maxWidth:480, padding:"28px 24px 48px",
+        maxHeight:"85vh", overflowY:"auto",
+      }}>
+        {/* Header */}
+        <div style={{ display:"flex", alignItems:"flex-start",
+          justifyContent:"space-between", marginBottom:24 }}>
+          <div style={{ display:"flex", alignItems:"center", gap:14 }}>
+            <span style={{ fontSize:44 }}>👁️</span>
+            <div>
+              <div style={{ fontSize:26, fontWeight:900, color:GV.orangeB,
+                letterSpacing:2, lineHeight:1 }}>EYESPY</div>
+              <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3,
+                marginTop:4 }}>SCAVENGER HUNT</div>
+              <div style={{ color:GV.yellowB, fontSize:12, fontWeight:700,
+                marginTop:4 }}>v{VERSION}</div>
+            </div>
+          </div>
+          <button onClick={onClose} style={{ background:"none", border:"none",
+            color:GV.fg3, fontSize:22, cursor:"pointer", padding:4,
+            lineHeight:1 }}>✕</button>
+        </div>
+
+        {/* Tagline */}
+        <div style={{ background:GV.bg0, borderRadius:12,
+          padding:"14px 16px", marginBottom:20,
+          borderLeft:`3px solid ${GV.orangeB}` }}>
+          <div style={{ color:GV.fg, fontSize:13, lineHeight:1.7 }}>
+            A daily real-world scavenger hunt. Each day brings a fresh set
+            of words — find something in the wild that matches as many as
+            possible, snap a photo, and score points. Compete with family
+            and friends on a weekly leaderboard.
+          </div>
+        </div>
+
+        {/* Credits */}
+        <div style={{ marginBottom:20 }}>
+          <div style={{ color:GV.fg3, fontSize:11, letterSpacing:2,
+            marginBottom:10 }}>MADE BY</div>
+          <div style={{ background:GV.bg0, borderRadius:12,
+            padding:"14px 16px" }}>
+            <div style={{ color:GV.fg, fontWeight:700, fontSize:14,
+              marginBottom:4 }}>👴 GrandPappyJay</div>
+            <div style={{ color:GV.fg3, fontSize:12, lineHeight:1.6 }}>
+              A GrandPappyLabs game — built for family and friends.
+              If you're playing this, you probably know Jason. 👋
+            </div>
+          </div>
+        </div>
+
+        {/* Sister game */}
+        <div style={{ marginBottom:20 }}>
+          <div style={{ color:GV.fg3, fontSize:11, letterSpacing:2,
+            marginBottom:10 }}>SISTER GAME</div>
+          <div style={{ background:GV.bg0, borderRadius:12,
+            padding:"14px 16px",
+            border:`1px solid ${GV.bg2}` }}>
+            <div style={{ color:GV.yellowB, fontWeight:700,
+              fontSize:14, marginBottom:4 }}>🎲 Clocktzee</div>
+            <div style={{ color:GV.fg3, fontSize:12, lineHeight:1.6 }}>
+              A live number-hunting game inspired by Yahtzee.
+              Photograph numbers you spot in the wild and score
+              points based on digit patterns.
+            </div>
+          </div>
+        </div>
+
+        {/* Terms / Waiver */}
+        <div style={{ marginBottom:20 }}>
+          <div style={{ color:GV.fg3, fontSize:11, letterSpacing:2,
+            marginBottom:10 }}>TERMS OF PLAY</div>
+          <div style={{ background:GV.bg0, borderRadius:12,
+            padding:"14px 16px", color:GV.fg3, fontSize:12,
+            lineHeight:1.8 }}>
+            By playing EyeSpy you agree to keep it fun, family-friendly,
+            and safe. Only photograph things and places you are permitted
+            to photograph. Never put yourself or others in danger to get
+            a photo. Play responsibly and respect those around you.
+            GrandPappyLabs is not responsible for anything that happens
+            while you are out hunting. Have fun. 👁️
+          </div>
+        </div>
+
+        {/* Version history */}
+        <div>
+          <div style={{ color:GV.fg3, fontSize:11, letterSpacing:2,
+            marginBottom:10 }}>VERSION HISTORY</div>
+          {CHANGELOG.map(c => (
+            <div key={c.version} style={{ marginBottom:12 }}>
+              <div style={{ color:GV.yellowB, fontSize:11, fontWeight:700,
+                marginBottom:6 }}>v{c.version}</div>
+              {c.entries.map((e,i) => (
+                <div key={i} style={{ color:GV.fg2, fontSize:11,
+                  marginBottom:3, paddingLeft:10 }}>• {e}</div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── PLAYER PROFILE SHEET ─────────────────────────────────────────────────────
+function PlayerProfileSheet({ player, submissions, onClose }) {
+  const GV = useContext(ThemeContext);
+  const subs = submissions.filter(s => s.playerId === player.id);
+  const total = subs.reduce((a,s) => a + s.score, 0);
+  const best  = subs.length ? Math.max(...subs.map(s => s.score)) : 0;
+  const streak = getStreakLength(submissions, player.id);
+  const fullMatches = subs.filter(s =>
+    s.scoreDetail?.matchedCount === s.scoreDetail?.totalWords &&
+    s.scoreDetail?.totalWords > 0
+  ).length;
+
+  return (
+    <div onClick={onClose} style={{ position:"fixed", inset:0,
+      background:"rgba(0,0,0,0.75)", zIndex:300,
+      display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        background:GV.bg1,
+        border:`1px solid ${player.color}44`,
+        borderRadius:"16px 16px 0 0", width:"100%", maxWidth:480,
+        padding:"24px 20px 48px", maxHeight:"85vh", overflowY:"auto",
+      }}>
+        {/* Player header */}
+        <div style={{ display:"flex", alignItems:"center",
+          gap:14, marginBottom:20 }}>
+          <div style={{ width:52, height:52, borderRadius:"50%",
+            background:player.color+"33",
+            border:`3px solid ${player.color}`,
+            display:"flex", alignItems:"center",
+            justifyContent:"center", fontSize:26 }}>
+            {player.emoji}
+          </div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontWeight:900, fontSize:20,
+              color:GV.fg }}>{player.name}</div>
+            <div style={{ color:player.color, fontSize:12, marginTop:2 }}>
+              {subs.length} find{subs.length !== 1 ? "s" : ""} total
+              {streak >= 3 && (
+                <span style={{ marginLeft:8 }}>🔥 {streak} day streak</span>
+              )}
+            </div>
+          </div>
+          <button onClick={onClose} style={{ background:"none",
+            border:"none", color:GV.fg3, fontSize:22,
+            cursor:"pointer", padding:4 }}>✕</button>
+        </div>
+
+        {/* Stats row */}
+        <div style={{ display:"flex", gap:10, marginBottom:20 }}>
+          {[
+            ["TOTAL PTS",  total],
+            ["BEST FIND",  `+${best}`],
+            ["FULL MATCH", fullMatches],
+            ["STREAK",     streak >= 3 ? `🔥${streak}` : streak],
+          ].map(([label, val]) => (
+            <div key={label} style={{ flex:1, background:GV.bg0,
+              borderRadius:10, padding:"10px 8px", textAlign:"center" }}>
+              <div style={{ color:player.color, fontWeight:900,
+                fontSize:18, fontFamily:"'Courier Prime',monospace" }}>
+                {val}
+              </div>
+              <div style={{ color:GV.fg3, fontSize:9,
+                letterSpacing:1, marginTop:2 }}>{label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Recent finds */}
+        <div style={{ color:GV.fg3, fontSize:11, letterSpacing:2,
+          marginBottom:12 }}>RECENT FINDS</div>
+        {subs.length === 0 ? (
+          <div style={{ color:GV.fg3, textAlign:"center",
+            padding:"30px 0", fontSize:13 }}>No finds yet!</div>
+        ) : subs.slice(0, 10).map(s => {
+          const dt = new Date(s.timestamp);
+          return (
+            <div key={s.id} style={{ padding:"10px 0",
+              borderBottom:`1px solid ${GV.bg0}` }}>
+              <div style={{ display:"flex", justifyContent:"space-between",
+                alignItems:"flex-start", marginBottom:4 }}>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:4, flex:1 }}>
+                  {(s.dailyWords || []).map(w => (
+                    <span key={w.id} style={{
+                      background: s.matchedWords?.some(m => m.id === w.id)
+                        ? GV.greenB : GV.bg1,
+                      color: s.matchedWords?.some(m => m.id === w.id)
+                        ? GV.bg0 : GV.fg3,
+                      borderRadius:10, padding:"2px 8px",
+                      fontSize:10, fontWeight:700,
+                    }}>{w.word}</span>
+                  ))}
+                </div>
+                <span style={{ color:GV.yellowB, fontWeight:900,
+                  fontSize:16, marginLeft:8, flexShrink:0 }}>
+                  +{s.score}
+                </span>
+              </div>
+              {s.note && (
+                <div style={{ color:GV.fg3, fontSize:11,
+                  fontStyle:"italic", marginBottom:2 }}>
+                  "{s.note}"
+                </div>
+              )}
+              <div style={{ color:GV.fg3, fontSize:10 }}>
+                {dt.toLocaleDateString("en-US", {
+                  month:"short", day:"numeric",
+                  hour:"2-digit", minute:"2-digit"
+                })}
+                {s.scoreDetail?.streakBonus > 0 && (
+                  <span style={{ color:GV.orangeB,
+                    marginLeft:6 }}>🔥 streak bonus</span>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+// ─── SUGGEST WORD MODAL ───────────────────────────────────────────────────────
+function SuggestWordModal({ onClose, playerId, playerName, inputStyle }) {
+  const GV = useContext(ThemeContext);
+  const [word, setWord] = useState("");
+  const [type, setType] = useState("descriptor");
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  async function handleSubmit() {
+    if (!word.trim()) return;
+    setSaving(true);
+    await addDoc(collection(db, "wordBank"), {
+      word: word.trim(),
+      type,
+      approved: false,
+      suggestedBy: playerName,
+      suggestedById: playerId,
+      suggestedAt: new Date().toISOString(),
+    });
+    setSaving(false);
+    setSaved(true);
+    setTimeout(onClose, 1500);
+  }
+
+  return (
+    <div onClick={onClose} style={{ position:"fixed", inset:0,
+      background:"rgba(0,0,0,0.88)", zIndex:300,
+      display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background:GV_DARK.bg1,
+        border:`1px solid ${GV_DARK.bg2}`, borderRadius:16, padding:24,
+        width:"100%", maxWidth:360 }}>
+        <div style={{ display:"flex", justifyContent:"space-between",
+          alignItems:"center", marginBottom:16 }}>
+          <span style={{ color:GV_DARK.fg, fontWeight:700, fontSize:16 }}>
+            Suggest a Word
+          </span>
+          <button onClick={onClose} style={{ background:"none", border:"none",
+            color:GV_DARK.fg3, fontSize:20, cursor:"pointer" }}>✕</button>
+        </div>
+        {saved ? (
+          <div style={{ textAlign:"center", padding:"20px 0" }}>
+            <div style={{ fontSize:32, marginBottom:8 }}>✅</div>
+            <div style={{ color:GV_DARK.greenB, fontWeight:700 }}>
+              Word submitted for review!
+            </div>
+          </div>
+        ) : (
+          <>
+            <div style={{ marginBottom:16 }}>
+              <label style={{ color:GV_DARK.fg3, fontSize:11, letterSpacing:2,
+                display:"block", marginBottom:8 }}>WORD TYPE</label>
+              <div style={{ display:"flex", gap:8 }}>
+                {[["descriptor","Descriptor"],["noun","Noun"],["verb","Verb/State"]].map(([val,label]) => (
+                  <button key={val} onClick={() => setType(val)}
+                    style={{ flex:1, padding:"8px 4px",
+                      background: type===val ? `${GV_DARK.orangeB}22` : "transparent",
+                      border:`1px solid ${type===val ? GV_DARK.orangeB : GV_DARK.bg2}`,
+                      borderRadius:8, color: type===val ? GV_DARK.orangeB : GV_DARK.fg3,
+                      fontSize:11, cursor:"pointer", fontFamily:"inherit" }}>
+                    {label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div style={{ marginBottom:20 }}>
+              <label style={{ color:GV_DARK.fg3, fontSize:11, letterSpacing:2,
+                display:"block", marginBottom:8 }}>WORD</label>
+              <input value={word}
+                onChange={e => setWord(e.target.value.slice(0,20))}
+                placeholder={
+                  type==="descriptor" ? "e.g. Sparkly" :
+                  type==="noun" ? "e.g. Mailbox" : "e.g. Spinning"
+                }
+                style={{ ...inputStyle, width:"100%", boxSizing:"border-box" }} />
+            </div>
+            <button onClick={handleSubmit} disabled={saving || !word.trim()}
+              style={{ width:"100%", padding:"13px",
+                background: !word.trim() ? GV_DARK.bg2 :
+                  `linear-gradient(135deg,${GV_DARK.orange},${GV_DARK.orangeB})`,
+                border:"none", borderRadius:12, color:GV_DARK.bg0, fontSize:14,
+                fontWeight:900, cursor: !word.trim() ? "default" : "pointer",
+                fontFamily:"inherit" }}>
+              {saving ? "Submitting…" : "Submit for Review"}
+            </button>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ─── RULES TAB ────────────────────────────────────────────────────────────────
+function RulesTab({ onSuggestWord }) {
+  const GV = useContext(ThemeContext);
+  const S = {
+    section: { marginBottom:24 },
+    heading: { color:GV.orangeB, fontWeight:900, fontSize:13,
+      letterSpacing:2, marginBottom:10 },
+    body: { color:GV.fg1, fontSize:13, lineHeight:1.7 },
+  };
   return (
     <div>
       <div style={S.section}>
         <div style={S.heading}>HOW TO PLAY</div>
         <div style={S.body}>
-          Each day EyeSpy gives you 3–5 words. Go out into the real world and find
-          something that matches as many of those words as possible. Snap a photo as
-          proof, tag which words you matched, and submit!
+          Each day EyeSpy gives you a set of words — a mix of descriptors,
+          nouns, and verbs. Go out into the real world and find something
+          that matches as many of those words as possible. Snap a photo as
+          proof, tag the words you matched, and submit!
         </div>
       </div>
       <div style={S.section}>
         <div style={S.heading}>SCORING</div>
-        {[["1 match","1 pt"],["2 matches","4 pts"],["3 matches","10 pts"],
-          ["4 matches","20 pts"],["5 matches","35 pts"]].map(([k,v]) => (
+        {[
+          ["1 match","1 pt"],
+          ["2 matches","4 pts"],
+          ["3 matches","10 pts"],
+          ["4 matches","20 pts"],
+          ["5 matches","35 pts"],
+        ].map(([k,v]) => (
           <div key={k} style={{ display:"flex", justifyContent:"space-between",
             color:GV.fg1, fontSize:13, marginBottom:4 }}>
-            <span>{k}</span><span style={{ color:GV.yellowB, fontWeight:700 }}>{v}</span>
+            <span>{k}</span>
+            <span style={{ color:GV.yellowB, fontWeight:700 }}>{v}</span>
           </div>
         ))}
         <div style={{ color:GV.greenB, fontSize:12, marginTop:8 }}>
@@ -662,16 +1357,184 @@ function RulesTab() {
         </div>
       </div>
       <div style={S.section}>
-        <div style={S.heading}>WORD CATEGORIES</div>
+        <div style={S.heading}>STREAK BONUS 🔥</div>
         <div style={S.body}>
-          Color · Number · Shape · Size · Animal · Object · Texture · State · Material · Nature
+          Submit a find on 3 or more consecutive days to build a streak.
+          Your first submission each day on a streak earns a +2 point bonus.
+          Miss a day and your streak resets!
+        </div>
+      </div>
+      <div style={S.section}>
+        <div style={S.heading}>DUPLICATE RULE</div>
+        <div style={S.body}>
+          You may submit multiple finds per day, but you cannot reuse the
+          exact same combination of matched words. For example, matching
+          "Red + Round" twice is not allowed — but "Red + Round" and
+          "Red + Broken" are both fine since the combos are different.
+        </div>
+      </div>
+      <div style={S.section}>
+        <div style={S.heading}>WORD TYPES</div>
+        <div style={S.body}>
+          Each day's words are drawn from three types: Descriptors
+          (colors, textures, sizes), Nouns (objects, animals, things),
+          and Verbs/States (actions or conditions). Every day has a
+          different mix!
         </div>
       </div>
       <div style={S.section}>
         <div style={S.heading}>LEADERBOARD</div>
         <div style={S.body}>
-          Scores reset every Monday at 4:00 AM CST. The weekly champion is crowned
-          for Top Score 🏆 and Most Finds 📸.
+          Scores reset every Monday at 4:00 AM CST. The weekly champion
+          is crowned for Top Score 🏆 and Most Finds 📸.
+        </div>
+      </div>
+      <button onClick={onSuggestWord}
+        style={{ width:"100%", marginTop:8, background:"transparent",
+          border:`1px solid ${GV.bg2}`, borderRadius:12, padding:"11px",
+          color:GV.fg3, cursor:"pointer", fontFamily:"inherit", fontSize:12 }}>
+        💡 Suggest a Word for the Bank
+      </button>
+    </div>
+  );
+}
+
+// ─── PROFILE SHEET ────────────────────────────────────────────────────────────
+function ProfileSheet({ player, submissions, games, activeGame, onClose,
+  onEdit, onLogout, onThemeToggle, onSwitchGame, onJoinGame, onCreateGame }) {
+  const GV = useContext(ThemeContext);
+  const subs = submissions.filter(s => s.playerId === player.id);
+  const total = subs.reduce((a,s) => a + s.score, 0);
+  const best  = subs.length ? Math.max(...subs.map(s => s.score)) : 0;
+  const fullMatches = subs.filter(s =>
+    s.scoreDetail?.matchedCount === s.scoreDetail?.totalWords && s.scoreDetail?.totalWords > 0
+  ).length;
+
+  return (
+    <div onClick={onClose} style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.7)",
+      zIndex:200, display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
+      <div onClick={e => e.stopPropagation()} style={{
+        background:GV.bg1, border:`1px solid ${player.color}55`,
+        borderRadius:"16px 16px 0 0", width:"100%", maxWidth:480,
+        padding:"24px 20px 40px", maxHeight:"85vh", overflowY:"auto",
+      }}>
+        <div style={{ display:"flex", alignItems:"center", gap:14, marginBottom:20 }}>
+          <div style={{ width:52, height:52, borderRadius:"50%", background:player.color+"33",
+            border:`3px solid ${player.color}`, display:"flex", alignItems:"center",
+            justifyContent:"center", fontSize:26 }}>{player.emoji}</div>
+          <div style={{ flex:1 }}>
+            <div style={{ fontWeight:900, fontSize:20, color:GV.fg }}>{player.name}</div>
+            <div style={{ color:player.color, fontSize:12, marginTop:2 }}>{subs.length} finds total</div>
+          </div>
+          <button onClick={onClose} style={{ background:"none", border:"none",
+            color:GV.fg3, fontSize:22, cursor:"pointer", padding:4 }}>✕</button>
+        </div>
+
+        <div style={{ display:"flex", gap:10, marginBottom:20 }}>
+          {[["TOTAL PTS", total], ["BEST FIND", `+${best}`], ["FULL MATCH", fullMatches]].map(([label,val]) => (
+            <div key={label} style={{ flex:1, background:"rgba(0,0,0,0.2)", borderRadius:10,
+              padding:"10px 12px", textAlign:"center" }}>
+              <div style={{ color:player.color, fontWeight:900, fontSize:20,
+                fontFamily:"'Courier Prime',monospace" }}>{val}</div>
+              <div style={{ color:GV.fg3, fontSize:9, letterSpacing:1, marginTop:2 }}>{label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginBottom:20 }}>
+          <div style={{ color:GV.fg3, fontSize:10, letterSpacing:2, marginBottom:10 }}>MY GAMES</div>
+          {games.map(g => (
+            <div key={g.id} style={{ display:"flex", alignItems:"center", gap:10,
+              padding:"10px 14px", borderRadius:10, marginBottom:6,
+              background: g.id===activeGame?.id ? `${GV.orangeB}18` : GV.bg0,
+              border:`1px solid ${g.id===activeGame?.id ? GV.orangeB+"66" : GV.bg2}` }}>
+              <span style={{ color:GV.fg, flex:1, fontSize:13 }}>👁️ {g.name}</span>
+              {g.id===activeGame?.id
+                ? <span style={{ color:GV.orangeB, fontSize:11, letterSpacing:1 }}>ACTIVE</span>
+                : <button onClick={() => { onSwitchGame(g); onClose(); }}
+                    style={{ padding:"5px 10px", background:"transparent",
+                      border:`1px solid ${GV.bg2}`, borderRadius:8,
+                      color:GV.fg3, fontSize:11, cursor:"pointer", fontFamily:"inherit" }}>
+                    Switch
+                  </button>
+              }
+            </div>
+          ))}
+          <div style={{ display:"flex", gap:8, marginTop:8 }}>
+            <button onClick={() => { onJoinGame(); onClose(); }} style={{
+              flex:1, padding:"9px", background:"transparent",
+              border:`1px solid ${GV.blueB}`, borderRadius:10, color:GV.blueB,
+              fontSize:12, cursor:"pointer", fontFamily:"inherit",
+            }}>Join a Game</button>
+            <button onClick={() => { onCreateGame(); onClose(); }} style={{
+              flex:1, padding:"9px", background:"transparent",
+              border:`1px solid ${GV.orangeB}`, borderRadius:10, color:GV.orangeB,
+              fontSize:12, cursor:"pointer", fontFamily:"inherit",
+            }}>+ Create Game</button>
+          </div>
+        </div>
+
+        <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
+          <button onClick={onEdit} style={{ padding:"12px", background:"transparent",
+            border:`1px solid ${GV.bg2}`, borderRadius:12, color:GV.fg,
+            fontSize:13, cursor:"pointer", fontFamily:"inherit" }}>
+            ✏️ Edit Profile
+          </button>
+          <button onClick={onThemeToggle} style={{ padding:"12px", background:"transparent",
+            border:`1px solid ${GV.bg2}`, borderRadius:12, color:GV.fg,
+            fontSize:13, cursor:"pointer", fontFamily:"inherit" }}>
+            {player.theme === "light" ? "🌙 Switch to Dark Mode" : "☀️ Switch to Light Mode"}
+          </button>
+          <button onClick={onLogout} style={{ padding:"12px", background:"transparent",
+            border:`1px solid ${GV.red}`, borderRadius:12, color:GV.redB,
+            fontSize:13, cursor:"pointer", fontFamily:"inherit" }}>
+            Switch Player
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── EDIT GAME CODE MODAL ─────────────────────────────────────────────────────
+function EditGameCodeModal({ game, onSave, onClose, inputStyle }) {
+  const [code, setCode] = useState(game.joinCode || "");
+  const [saving, setSaving] = useState(false);
+  async function handleSave() {
+    if (!code.trim()) return;
+    setSaving(true);
+    await onSave(game.id, code.trim().toUpperCase());
+    setSaving(false);
+    onClose();
+  }
+  return (
+    <div onClick={onClose} style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.88)",
+      zIndex:300, display:"flex", alignItems:"center", justifyContent:"center", padding:20 }}>
+      <div onClick={e => e.stopPropagation()} style={{ background:GV_DARK.bg1,
+        border:`1px solid ${GV_DARK.bg2}`, borderRadius:16, padding:24, width:"100%", maxWidth:360 }}>
+        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
+          <span style={{ color:GV_DARK.fg, fontWeight:700, fontSize:16 }}>Edit Join Code</span>
+          <button onClick={onClose} style={{ background:"none", border:"none", color:GV_DARK.fg3, fontSize:20, cursor:"pointer" }}>✕</button>
+        </div>
+        <div style={{ color:GV_DARK.fg3, fontSize:11, marginBottom:16 }}>
+          Share this code with family and friends so they can join <strong style={{ color:GV_DARK.fg }}>{game.name}</strong>.
+        </div>
+        <input value={code}
+          onChange={e => setCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12))}
+          style={{ ...inputStyle, width:"100%", boxSizing:"border-box",
+            letterSpacing:4, fontSize:22, textAlign:"center", fontWeight:900,
+            marginBottom:16, display:"block" }} />
+        <div style={{ display:"flex", gap:10 }}>
+          <button onClick={handleSave} disabled={saving || !code.trim()}
+            style={{ flex:1, background:GV_DARK.orange, border:"none", borderRadius:10,
+              padding:"12px", color:GV_DARK.bg0, fontWeight:700, cursor:"pointer", fontFamily:"inherit" }}>
+            {saving ? "Saving…" : "Save Code"}
+          </button>
+          <button onClick={onClose}
+            style={{ flex:1, background:GV_DARK.bg2, border:"none", borderRadius:10,
+              padding:"12px", color:GV_DARK.fg, cursor:"pointer", fontFamily:"inherit" }}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>
@@ -703,6 +1566,10 @@ export default function App() {
   const [champions, setChampions] = useState([]);
   const [pendingWinner, setPendingWinner] = useState(null);
 
+  // Community word bank
+  const [communityWords, setCommunityWords] = useState([]);
+  const [pendingWords, setPendingWords] = useState([]);
+
   // UI state
   const [showAddPlayer, setShowAddPlayer] = useState(false);
   const [showCreateGame, setShowCreateGame] = useState(false);
@@ -711,6 +1578,16 @@ export default function App() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const [editingCurrentPlayer, setEditingCurrentPlayer] = useState(false);
+  const [editingGameCode, setEditingGameCode] = useState(null);
+  const [showProfileSheet, setShowProfileSheet] = useState(false);
+  const [showSuggestWord, setShowSuggestWord] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [profilePlayer, setProfilePlayer] = useState(null);
+  const [adminPinUnlocked, setAdminPinUnlocked] = useState(false);
+  const [adminPinInput, setAdminPinInput] = useState("");
+  const [adminPinError, setAdminPinError] = useState("");
+  const [adminSection, setAdminSection] = useState("players");
+  const [editingPlayer, setEditingPlayer] = useState(null);
 
   // Submit form
   const [selectedWords, setSelectedWords] = useState([]);
@@ -794,7 +1671,11 @@ export default function App() {
       if (snap.exists()) {
         setDailyWords(snap.data().words || []);
       } else {
-        const words = generateDailyWords();
+        const fullBank = [
+          ...WORD_BANK,
+          ...communityWords.map(w => ({ id: w.id, type: w.type, word: w.word }))
+        ];
+        const words = generateDailyWordsFromBank(fullBank, key);
         await setDoc(doc(db, "dailyWords", key), {
           date: key, words, generatedAt: new Date().toISOString(),
         });
@@ -806,17 +1687,24 @@ export default function App() {
 
   // ── Submissions subscription ──
   useEffect(() => {
-    if (!activeGame) return;
-    const q = query(
-      collection(db, "submissions"),
-      where("gameIds", "array-contains", activeGame.id),
-      orderBy("timestamp", "desc")
-    );
+    const q = query(collection(db, "submissions"), orderBy("timestamp", "desc"));
     const unsub = onSnapshot(q, snap => {
-      setSubmissions(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+      const now = Date.now();
+      const updates = [];
+      const data = snap.docs.map(d => {
+        const sub = { id: d.id, ...d.data() };
+        if (sub.hasImage && sub.imageData &&
+            now - new Date(sub.timestamp).getTime() > IMAGE_TTL_MS) {
+          updates.push(updateDoc(doc(db, "submissions", d.id), { imageData: null }));
+          sub.imageData = null;
+        }
+        return sub;
+      });
+      if (updates.length > 0) Promise.all(updates).catch(console.error);
+      setSubmissions(data);
     });
     return unsub;
-  }, [activeGame?.id]);
+  }, []);
 
   // ── Champions subscription ──
   useEffect(() => {
@@ -827,6 +1715,25 @@ export default function App() {
     });
     return unsub;
   }, [activeGame?.id]);
+
+  // ── Community word bank (approved player suggestions) ──
+  useEffect(() => {
+    const q = query(collection(db, "wordBank"), where("approved", "==", true));
+    const unsub = onSnapshot(q, snap => {
+      setCommunityWords(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    });
+    return unsub;
+  }, []);
+
+  // ── Pending word suggestions (admin only) ──
+  useEffect(() => {
+    if (!currentPlayer?.isAdmin) return;
+    const q = query(collection(db, "wordBank"), where("approved", "==", false));
+    const unsub = onSnapshot(q, snap => {
+      setPendingWords(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    });
+    return unsub;
+  }, [currentPlayer?.isAdmin]);
 
   // ── Period reset check ──
   useEffect(() => {
@@ -874,7 +1781,12 @@ export default function App() {
   // ── Player CRUD ──
   async function handleAddPlayer({ name, emoji, color }) {
     const id = name.toLowerCase().replace(/\s+/g,"_") + "_" + Date.now();
-    await setDoc(doc(db, "players", id), { id, name, emoji, color, isAdmin: false, theme:"dark" });
+    const isFirstPlayer = players.length === 0;
+    await setDoc(doc(db, "players", id), {
+      id, name, emoji, color,
+      isAdmin: isFirstPlayer,
+      theme: "dark"
+    });
     setShowAddPlayer(false);
   }
   async function handleEditPlayer(playerId, changes) {
@@ -895,6 +1807,10 @@ export default function App() {
     setCurrentPlayer(null);
     setActiveGame(null);
     setTab("today");
+    setShowProfileSheet(false);
+    setAdminPinUnlocked(false);
+    setAdminPinInput("");
+    setAdminPinError("");
   }
   async function handleThemeToggle() {
     const newTheme = currentPlayer.theme === "light" ? "dark" : "light";
@@ -923,6 +1839,12 @@ export default function App() {
     setShowJoinGame(false);
     return null;
   }
+  async function handleEditGameCode(gameId, newCode) {
+    await updateDoc(doc(db, "games", gameId), { joinCode: newCode });
+  }
+  async function handleToggleAdmin(playerId, current) {
+    await updateDoc(doc(db, "players", playerId), { isAdmin: !current });
+  }
   function handleSelectGame(game) {
     setActiveGame(game);
     localStorage.setItem("esp_active_game", game.id);
@@ -932,11 +1854,23 @@ export default function App() {
   // ── Submit ──
   async function handleSubmit() {
     setSubmitError("");
-    if (selectedWords.length === 0) { setSubmitError("Tag at least one word you matched."); return; }
-    if (!imageFile) { setSubmitError("Attach a proof photo — pic or it didn't happen! 📷"); return; }
+    if (selectedWords.length === 0) {
+      setSubmitError("Tag at least one word you matched.");
+      return;
+    }
+    if (!imageFile) {
+      setSubmitError("Attach a proof photo — pic or it didn't happen! 📷");
+      return;
+    }
+    const matchedIds = selectedWords.map(w => w.id);
+    if (hasDuplicateMatchToday(submissions, currentPlayer.id, matchedIds, todayKey)) {
+      setSubmitError("You already submitted this exact combination today! Try a different find.");
+      return;
+    }
     setSubmitting(true);
     try {
-      const scoreResult = scoreSubmission(selectedWords.length, dailyWords.length);
+      const bonus = getStreakBonus(submissions, currentPlayer.id);
+      const scoreResult = scoreSubmission(selectedWords.length, dailyWords.length, bonus);
       const imageData = await compressImage(imageFile);
       const playerSubs = submissions.filter(s => s.playerId === currentPlayer.id);
       const prevBest = playerSubs.length ? Math.max(...playerSubs.map(s => s.score)) : 0;
@@ -953,7 +1887,9 @@ export default function App() {
         matchedWords: selectedWords,
         score: scoreResult.total,
         scoreDetail: scoreResult,
-        hasImage: true, imageData, reactions: {},
+        hasImage: true,
+        imageData,
+        reactions: {},
         note: note.trim(),
         timestamp: new Date().toISOString(),
       });
@@ -979,10 +1915,14 @@ export default function App() {
     .filter(p => activeGame?.members?.includes(p.id))
     .map(p => {
       const subs = periodSubs.filter(s => s.playerId === p.id);
-      return { ...p,
+      const streak = getStreakLength(submissions, p.id);
+      return {
+        ...p,
         total: subs.reduce((a,s) => a + s.score, 0),
         count: subs.length,
         best: subs.length ? Math.max(...subs.map(s => s.score)) : 0,
+        streak,
+        hasStreak: streak >= 3,
       };
     }).sort((a,b) => b.total - a.total);
 
@@ -998,7 +1938,11 @@ export default function App() {
 
   if (showWelcomeModal) return (
     <ThemeContext.Provider value={GV}>
-      <WelcomeModal isFirstTime={isFirstTimeUser} onAccept={handleAcceptTerms} />
+      <WelcomeModal
+        isFirstTime={isFirstTimeUser}
+        onAccept={handleAcceptTerms}
+        onTitleClick={() => setShowAbout(true)}
+      />
     </ThemeContext.Provider>
   );
 
@@ -1015,60 +1959,120 @@ export default function App() {
 
   if (!activeGame) return (
     <ThemeContext.Provider value={GV}>
-      <GameSelectScreen player={currentPlayer} games={games} gamesLoaded={gamesLoaded}
-        onSelect={handleSelectGame} onCreateGame={() => setShowCreateGame(true)}
-        onJoinGame={() => setShowJoinGame(true)} onSwitchPlayer={handleLogout} />
+      <GameSelectScreen
+        player={currentPlayer} games={games} gamesLoaded={gamesLoaded}
+        onSelect={handleSelectGame}
+        onCreateGame={() => setShowCreateGame(true)}
+        onJoinGame={() => setShowJoinGame(true)}
+        onSwitchPlayer={handleLogout}
+        onEditGameCode={(g) => setEditingGameCode(g)}
+      />
       {showCreateGame && (
         <CreateGameModal onSave={handleCreateGame} onClose={() => setShowCreateGame(false)} inputStyle={darkInput} />
       )}
       {showJoinGame && (
         <JoinGameModal onJoin={handleJoinGame} onClose={() => setShowJoinGame(false)} inputStyle={darkInput} />
       )}
+      {editingGameCode && (
+        <EditGameCodeModal
+          game={editingGameCode}
+          onSave={handleEditGameCode}
+          onClose={() => setEditingGameCode(null)}
+          inputStyle={darkInput}
+        />
+      )}
     </ThemeContext.Provider>
   );
 
   const NAV = [
-    ["today",    "👁️ Today"],
-    ["submit",   "➕ Submit"],
-    ["board",    "🏆 Board"],
-    ["feed",     "📋 Feed"],
-    ["rules",    "📖 Rules"],
-    ["champs",   "🥇 Champs"],
+    ["today",   "👁️ Today"],
+    ["submit",  "➕ Submit"],
+    ["board",   "🏆 Board"],
+    ["feed",    "📋 Feed"],
+    ["rules",   "📖 Rules"],
+    ["champs",  "🥇 Champs"],
+    ...(currentPlayer.isAdmin ? [["admin", "⚙️ Admin"]] : []),
   ];
 
   return (
     <ThemeContext.Provider value={GV}>
       <div style={{ background:GV.bg0, minHeight:"100vh", fontFamily:"'Courier Prime',monospace",
-        color:GV.fg, maxWidth:480, margin:"0 auto", paddingBottom:80 }}>
+        color:GV.fg, maxWidth:480, width:"100%", margin:"0 auto", paddingBottom:24,
+        boxSizing:"border-box" }}>
 
         <Confetti active={showConfetti} />
+
+        {showProfileSheet && (
+          <ProfileSheet
+            player={currentPlayer}
+            submissions={submissions}
+            games={games}
+            activeGame={activeGame}
+            onClose={() => setShowProfileSheet(false)}
+            onEdit={() => { setEditingCurrentPlayer(true); setShowProfileSheet(false); }}
+            onLogout={handleLogout}
+            onThemeToggle={handleThemeToggle}
+            onSwitchGame={handleSelectGame}
+            onJoinGame={() => { setShowJoinGame(true); setActiveGame(null); }}
+            onCreateGame={() => { setShowCreateGame(true); setActiveGame(null); }}
+          />
+        )}
+        {editingPlayer && (
+          <PlayerModal
+            player={editingPlayer}
+            onSave={changes => handleEditPlayer(editingPlayer.id, changes)}
+            onRemove={() => handleRemovePlayer(editingPlayer.id)}
+            onClose={() => setEditingPlayer(null)}
+            inputStyle={inputStyle}
+            isEdit={true}
+          />
+        )}
 
         {pendingWinner && (
           <WinnerBanner winner={pendingWinner} periodLabel={pendingWinner.periodLabel}
             onDismiss={() => setPendingWinner(null)} />
         )}
 
-        {/* HEADER */}
-        <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between",
-          padding:"16px 20px", borderBottom:`1px solid ${GV.bg2}` }}>
-          <div style={{ display:"flex", alignItems:"baseline", gap:6 }}>
-            <span style={{ fontSize:22, fontWeight:900, color:GV.orangeB, letterSpacing:1 }}>EYESPY</span>
-            <span style={{ fontSize:18 }}>👁️</span>
-          </div>
-          <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-            <span style={{ color:GV.fg3, fontSize:11 }}>{activeGame.name}</span>
-            <button onClick={() => setEditingCurrentPlayer(true)}
-              style={{ background:"transparent", border:"none", cursor:"pointer", padding:4 }}>
-              <div style={{ width:32, height:32, borderRadius:"50%", background:currentPlayer.color,
-                display:"flex", alignItems:"center", justifyContent:"center", fontSize:18 }}>
-                {currentPlayer.emoji}
-              </div>
+        {/* HEADER + NAV */}
+        <div style={{ background:GV.bg1, borderBottom:`1px solid ${GV.bg2}`, position:"sticky", top:0, zIndex:10 }}>
+          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between",
+            padding:"12px 20px" }}>
+            <button onClick={() => setShowAbout(true)}
+              style={{ background:"none", border:"none", cursor:"pointer",
+                display:"flex", alignItems:"baseline", gap:6, padding:0,
+                fontFamily:"inherit" }}>
+              <span style={{ fontSize:20, fontWeight:900, color:GV.orangeB,
+                letterSpacing:1 }}>EYESPY</span>
+              <span style={{ fontSize:16 }}>👁️</span>
             </button>
+            <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+              <span style={{ color:GV.fg3, fontSize:11 }}>{activeGame.name}</span>
+              <button onClick={() => setShowProfileSheet(true)}
+                style={{ background:"transparent", border:"none", cursor:"pointer", padding:4 }}>
+                <div style={{ width:30, height:30, borderRadius:"50%", background:currentPlayer.color,
+                  display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>
+                  {currentPlayer.emoji}
+                </div>
+              </button>
+            </div>
+          </div>
+          <div style={{ display:"flex", borderTop:`1px solid ${GV.bg2}`,
+            overflowX:"auto", WebkitOverflowScrolling:"touch" }}>
+            {NAV.map(([key, label]) => (
+              <button key={key} onClick={() => setTab(key)}
+                style={{ flex:"0 0 auto", minWidth:60, background:"transparent", border:"none",
+                  padding:"8px 6px", color: tab===key ? GV.orangeB : GV.fg3,
+                  fontWeight: tab===key ? 900 : 400, cursor:"pointer",
+                  fontFamily:"inherit", fontSize:10, whiteSpace:"nowrap",
+                  borderBottom: tab===key ? `2px solid ${GV.orangeB}` : "2px solid transparent" }}>
+                {label}
+              </button>
+            ))}
           </div>
         </div>
 
         {/* TAB CONTENT */}
-        <div style={{ padding:"16px 20px" }}>
+        <div style={{ padding:"16px", boxSizing:"border-box", width:"100%" }}>
 
           {/* TODAY TAB */}
           {tab === "today" && (
@@ -1085,7 +2089,6 @@ export default function App() {
                     <div key={w.id} style={{ background:GV.bg1, border:`2px solid ${GV.orangeB}`,
                       borderRadius:20, padding:"8px 16px" }}>
                       <div style={{ color:GV.fg, fontWeight:900, fontSize:16 }}>{w.word}</div>
-                      <div style={{ color:GV.fg3, fontSize:10, textAlign:"center" }}>{w.category}</div>
                     </div>
                   ))}
                 </div>
@@ -1099,6 +2102,12 @@ export default function App() {
                   </div>
                 ))}
               </div>
+              <button onClick={() => setShowSuggestWord(true)}
+                style={{ width:"100%", marginTop:12, background:"transparent",
+                  border:`1px solid ${GV.bg2}`, borderRadius:12, padding:"11px",
+                  color:GV.fg3, cursor:"pointer", fontFamily:"inherit", fontSize:12 }}>
+                💡 Suggest a Word
+              </button>
             </div>
           )}
 
@@ -1120,22 +2129,33 @@ export default function App() {
                   />
                 ))}
               </div>
-              {selectedWords.length > 0 && (
-                <div style={{ background:GV.bg1, borderRadius:10, padding:"10px 14px", marginBottom:16,
-                  display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                  <span style={{ color:GV.fg2, fontSize:12 }}>
-                    {selectedWords.length} of {dailyWords.length} matched
-                  </span>
-                  <span style={{ color:GV.yellowB, fontWeight:900 }}>
-                    {scoreSubmission(selectedWords.length, dailyWords.length).total} pts
-                  </span>
-                </div>
-              )}
+              {selectedWords.length > 0 && (() => {
+                const bonus = getStreakBonus(submissions, currentPlayer.id);
+                const preview = scoreSubmission(selectedWords.length, dailyWords.length, bonus);
+                return (
+                  <div style={{ background:GV.bg1, borderRadius:10, padding:"10px 14px",
+                    marginBottom:16 }}>
+                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
+                      <span style={{ color:GV.fg2, fontSize:12 }}>
+                        {selectedWords.length} of {dailyWords.length} matched
+                      </span>
+                      <span style={{ color:GV.yellowB, fontWeight:900 }}>
+                        {preview.total} pts
+                      </span>
+                    </div>
+                    {bonus > 0 && (
+                      <div style={{ color:GV.orangeB, fontSize:11, marginTop:4 }}>
+                        🔥 +{bonus} streak bonus included!
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
               <div style={{ marginBottom:16 }}>
                 <label style={{ color:GV.fg3, fontSize:11, letterSpacing:2, display:"block", marginBottom:8 }}>
                   PROOF PHOTO *
                 </label>
-                <input type="file" accept="image/*" capture="environment"
+                <input type="file" accept="image/*"
                   ref={el => fileInputRef.current = el}
                   onChange={e => {
                     const f = e.target.files?.[0];
@@ -1192,7 +2212,8 @@ export default function App() {
               {leaderboard.length === 0 ? (
                 <div style={{ textAlign:"center", color:GV.fg3, padding:40 }}>No scores yet this week!</div>
               ) : leaderboard.map((p, i) => (
-                <div key={p.id} style={{ background: i===0 ? GV.bg1 : GV.bg1,
+                <div key={p.id} onClick={() => setProfilePlayer(p)}
+                  style={{ cursor:"pointer", background: i===0 ? GV.bg1 : GV.bg1,
                   border:`1px solid ${i===0 ? GV.yellowB : GV.bg2}`,
                   borderRadius:12, padding:"12px 16px", marginBottom:8,
                   display:"flex", alignItems:"center", gap:12 }}>
@@ -1200,8 +2221,20 @@ export default function App() {
                     fontWeight:900, fontSize:18, width:24, textAlign:"center" }}>
                     {i===0 ? "🏆" : i+1}
                   </div>
-                  <PlayerBadge player={p} />
-                  <div style={{ marginLeft:"auto", textAlign:"right" }}>
+                  <div style={{ flex:1 }}>
+                    <div style={{ display:"flex", alignItems:"center", gap:6 }}>
+                      <PlayerBadge player={p} />
+                      {p.hasStreak && (
+                        <span title={`${p.streak} day streak!`} style={{ fontSize:14 }}>🔥</span>
+                      )}
+                    </div>
+                    {p.streak >= 3 && (
+                      <div style={{ color:GV.orangeB, fontSize:10, marginTop:2 }}>
+                        🔥 {p.streak} day streak
+                      </div>
+                    )}
+                  </div>
+                  <div style={{ textAlign:"right" }}>
                     <div style={{ color:GV.yellowB, fontWeight:900 }}>{p.total} pts</div>
                     <div style={{ color:GV.fg3, fontSize:11 }}>{p.count} find{p.count!==1?"s":""}</div>
                   </div>
@@ -1249,33 +2282,269 @@ export default function App() {
           )}
 
           {/* RULES TAB */}
-          {tab === "rules" && <RulesTab />}
+          {tab === "rules" && <RulesTab onSuggestWord={() => setShowSuggestWord(true)} />}
 
           {/* CHAMPS TAB */}
           {tab === "champs" && <ChampionsTab champions={champions} players={players} />}
 
+          {/* ADMIN TAB */}
+          {tab === "admin" && currentPlayer.isAdmin && (
+            <div>
+              {!adminPinUnlocked ? (
+                <div style={{ maxWidth:300, margin:"40px auto 0", textAlign:"center" }}>
+                  <div style={{ fontSize:32, marginBottom:12 }}>🔒</div>
+                  <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3, marginBottom:20 }}>
+                    ADMIN ACCESS
+                  </div>
+                  <input
+                    value={adminPinInput}
+                    onChange={e => { setAdminPinInput(e.target.value.toUpperCase()); setAdminPinError(""); }}
+                    onKeyDown={e => {
+                      if (e.key === "Enter") {
+                        if (adminPinInput === "GPJ") { setAdminPinUnlocked(true); setAdminPinInput(""); }
+                        else { setAdminPinError("Incorrect PIN."); setAdminPinInput(""); }
+                      }
+                    }}
+                    placeholder="PIN"
+                    style={{ ...inputStyle, width:"100%", boxSizing:"border-box",
+                      letterSpacing:8, textAlign:"center", fontSize:20, marginBottom:10 }}
+                  />
+                  {adminPinError && (
+                    <div style={{ color:GV.redB, fontSize:12, marginBottom:10 }}>{adminPinError}</div>
+                  )}
+                  <button onClick={() => {
+                    if (adminPinInput === "GPJ") {
+                      setAdminPinUnlocked(true); setAdminPinInput(""); setAdminPinError("");
+                    } else {
+                      setAdminPinError("Incorrect PIN."); setAdminPinInput("");
+                    }
+                  }} style={{ width:"100%", padding:"13px",
+                    background:`linear-gradient(135deg,${GV.orange},${GV.orangeB})`,
+                    border:"none", borderRadius:12, color:GV.bg0, fontSize:14,
+                    fontWeight:900, letterSpacing:2, cursor:"pointer", fontFamily:"inherit" }}>
+                    UNLOCK
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <div style={{ color:GV.fg3, fontSize:11, letterSpacing:3, marginBottom:16 }}>
+                    ADMIN PANEL
+                  </div>
+                  <div style={{ display:"flex", gap:8, marginBottom:20, flexWrap:"wrap" }}>
+                    {[["players","👥 Players"],["words","💡 Words"],["games","🎮 Games"],["danger","⚠️ Danger"]].map(([id,label]) => (
+                      <button key={id} onClick={() => setAdminSection(id)} style={{
+                        padding:"7px 14px", borderRadius:20,
+                        border:`1px solid ${adminSection===id ? GV.orangeB : GV.bg2}`,
+                        background: adminSection===id ? `${GV.orangeB}18` : "transparent",
+                        color: adminSection===id ? GV.orangeB : GV.fg3,
+                        fontSize:12, cursor:"pointer", fontFamily:"inherit",
+                      }}>{label}</button>
+                    ))}
+                  </div>
+
+                  {adminSection === "players" && (
+                    <div>
+                      {players.map(p => (
+                        <div key={p.id} style={{ display:"flex", alignItems:"center", gap:10,
+                          padding:"10px 14px", borderRadius:10, marginBottom:8,
+                          background:GV.bg0, border:`1px solid ${GV.bg2}` }}>
+                          <div style={{ width:32, height:32, borderRadius:"50%", background:p.color,
+                            display:"flex", alignItems:"center", justifyContent:"center", fontSize:16 }}>
+                            {p.emoji}
+                          </div>
+                          <span style={{ flex:1, color:GV.fg, fontSize:13, fontWeight:700 }}>{p.name}</span>
+                          <span style={{ color: p.isAdmin ? GV.yellowB : GV.bg3, fontSize:10, marginRight:4 }}>
+                            {p.isAdmin ? "admin" : ""}
+                          </span>
+                          <button onClick={() => handleToggleAdmin(p.id, p.isAdmin)} style={{
+                            padding:"4px 8px", background:"transparent",
+                            border:`1px solid ${p.isAdmin ? GV.yellowB+"66" : GV.bg2}`,
+                            borderRadius:8, color: p.isAdmin ? GV.yellowB : GV.bg3,
+                            fontSize:10, cursor:"pointer", fontFamily:"inherit",
+                          }}>{p.isAdmin ? "★ Admin" : "☆"}</button>
+                          <button onClick={() => setEditingPlayer(p)} style={{
+                            padding:"5px 10px", background:"transparent",
+                            border:`1px solid ${GV.bg2}`, borderRadius:8,
+                            color:GV.fg3, fontSize:11, cursor:"pointer", fontFamily:"inherit",
+                          }}>Edit</button>
+                        </div>
+                      ))}
+                      <button onClick={() => setShowAddPlayer(true)} style={{
+                        width:"100%", marginTop:12, padding:"12px", background:"transparent",
+                        border:`2px dashed ${GV.bg2}`, borderRadius:10, color:GV.fg3,
+                        fontSize:13, cursor:"pointer", fontFamily:"inherit",
+                      }}>+ Add Player</button>
+                    </div>
+                  )}
+
+                  {adminSection === "words" && (
+                    <div>
+                      <div style={{ color:GV.fg3, fontSize:11, letterSpacing:2, marginBottom:12 }}>
+                        PENDING SUGGESTIONS
+                      </div>
+                      {pendingWords.length === 0 ? (
+                        <div style={{ color:GV.fg3, textAlign:"center", padding:"30px 0", fontSize:13 }}>
+                          No pending suggestions!
+                        </div>
+                      ) : pendingWords.map(w => (
+                        <div key={w.id} style={{ background:GV.bg0,
+                          border:`1px solid ${GV.bg2}`, borderRadius:12,
+                          padding:"12px 14px", marginBottom:8 }}>
+                          <div style={{ display:"flex", alignItems:"center",
+                            justifyContent:"space-between", marginBottom:4 }}>
+                            <span style={{ color:GV.fg, fontWeight:700, fontSize:15 }}>{w.word}</span>
+                            <span style={{ color:GV.fg3, fontSize:10, background:GV.bg1,
+                              padding:"2px 8px", borderRadius:10 }}>{w.type}</span>
+                          </div>
+                          <div style={{ color:GV.fg3, fontSize:11, marginBottom:10 }}>
+                            Suggested by {w.suggestedBy}
+                          </div>
+                          <div style={{ display:"flex", gap:8 }}>
+                            <button onClick={async () => {
+                              await updateDoc(doc(db, "wordBank", w.id), { approved: true });
+                            }} style={{ flex:1, padding:"8px",
+                              background:`linear-gradient(135deg,${GV.green},${GV.greenB})`,
+                              border:"none", borderRadius:8, color:GV.bg0,
+                              fontWeight:700, cursor:"pointer", fontFamily:"inherit", fontSize:12 }}>
+                              ✓ Approve
+                            </button>
+                            <button onClick={async () => {
+                              await deleteDoc(doc(db, "wordBank", w.id));
+                            }} style={{ flex:1, padding:"8px", background:"transparent",
+                              border:`1px solid ${GV.red}`, borderRadius:8, color:GV.redB,
+                              cursor:"pointer", fontFamily:"inherit", fontSize:12 }}>
+                              ✕ Reject
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                      <div style={{ marginTop:20, color:GV.fg3, fontSize:11,
+                        letterSpacing:2, marginBottom:12 }}>
+                        APPROVED WORDS ({communityWords.length})
+                      </div>
+                      {communityWords.length === 0 ? (
+                        <div style={{ color:GV.fg3, fontSize:12 }}>No approved community words yet.</div>
+                      ) : communityWords.map(w => (
+                        <div key={w.id} style={{ display:"flex", alignItems:"center", gap:10,
+                          padding:"8px 12px", borderRadius:8, marginBottom:6,
+                          background:GV.bg0, border:`1px solid ${GV.bg2}` }}>
+                          <span style={{ flex:1, color:GV.fg, fontSize:13 }}>{w.word}</span>
+                          <span style={{ color:GV.fg3, fontSize:10 }}>{w.type}</span>
+                          <button onClick={async () => {
+                            await deleteDoc(doc(db, "wordBank", w.id));
+                          }} style={{ background:"transparent", border:`1px solid ${GV.red}44`,
+                            borderRadius:6, padding:"3px 8px", color:GV.redB,
+                            fontSize:10, cursor:"pointer", fontFamily:"inherit" }}>✕</button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {adminSection === "games" && (
+                    <div>
+                      {games.map(g => (
+                        <div key={g.id} style={{ background:GV.bg0,
+                          border:`1px solid ${g.id===activeGame?.id ? GV.orangeB+"44" : GV.bg2}`,
+                          borderRadius:12, padding:"14px 16px", marginBottom:10 }}>
+                          <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between", marginBottom:6 }}>
+                            <div style={{ color:GV.fg, fontWeight:700 }}>👁️ {g.name}</div>
+                            {g.id===activeGame?.id && (
+                              <span style={{ color:GV.orangeB, fontSize:10, letterSpacing:1 }}>ACTIVE</span>
+                            )}
+                          </div>
+                          <div style={{ color:GV.fg3, fontSize:11, marginBottom:8 }}>
+                            {g.members?.length || 0} members · {g.periodMode || "weekly"} · code:
+                            <span style={{ color:GV.yellowB, fontWeight:700, letterSpacing:2, marginLeft:4 }}>
+                              {g.joinCode}
+                            </span>
+                          </div>
+                          <div style={{ color:GV.fg3, fontSize:10 }}>
+                            Members: {g.members?.map(id => players.find(p=>p.id===id)?.name || id).join(", ")}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {adminSection === "danger" && (
+                    <div>
+                      <div style={{ background:GV.bg0, border:`1px solid ${GV.red}44`,
+                        borderRadius:12, padding:"16px", marginBottom:12 }}>
+                        <div style={{ color:GV.redB, fontWeight:700, marginBottom:8 }}>
+                          ⚠️ Reset All Submissions
+                        </div>
+                        <div style={{ color:GV.fg3, fontSize:12, marginBottom:12 }}>
+                          Permanently deletes ALL submissions across all games and players.
+                          Players, games, and champions are kept. Cannot be undone.
+                        </div>
+                        <button onClick={async () => {
+                          if (!window.confirm("Delete ALL submissions? This cannot be undone.")) return;
+                          const snap = await getDocs(collection(db, "submissions"));
+                          const batch = writeBatch(db);
+                          snap.docs.forEach(d => batch.delete(d.ref));
+                          await batch.commit();
+                        }} style={{ padding:"11px 20px",
+                          background:"transparent", border:`1px solid ${GV.red}`,
+                          borderRadius:10, color:GV.redB, fontSize:13,
+                          cursor:"pointer", fontFamily:"inherit" }}>
+                          Delete All Submissions
+                        </button>
+                      </div>
+                      <div style={{ background:GV.bg0, border:`1px solid ${GV.red}44`,
+                        borderRadius:12, padding:"16px" }}>
+                        <div style={{ color:GV.redB, fontWeight:700, marginBottom:8 }}>
+                          ⚠️ Reset Champions
+                        </div>
+                        <div style={{ color:GV.fg3, fontSize:12, marginBottom:12 }}>
+                          Deletes all champion records. The leaderboard history will be cleared.
+                        </div>
+                        <button onClick={async () => {
+                          if (!window.confirm("Delete ALL champion records? Cannot be undone.")) return;
+                          const snap = await getDocs(collection(db, "champions"));
+                          const batch = writeBatch(db);
+                          snap.docs.forEach(d => batch.delete(d.ref));
+                          await batch.commit();
+                        }} style={{ padding:"11px 20px",
+                          background:"transparent", border:`1px solid ${GV.red}`,
+                          borderRadius:10, color:GV.redB, fontSize:13,
+                          cursor:"pointer", fontFamily:"inherit" }}>
+                          Delete All Champions
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
         </div>
 
-        {/* BOTTOM NAV */}
-        <div style={{ position:"fixed", bottom:0, left:"50%", transform:"translateX(-50%)",
-          width:"100%", maxWidth:480, background:GV.bg1,
-          borderTop:`1px solid ${GV.bg2}`, display:"flex" }}>
-          {NAV.map(([key, label]) => (
-            <button key={key} onClick={() => setTab(key)}
-              style={{ flex:1, background:"transparent", border:"none",
-                padding:"10px 4px", color: tab===key ? GV.orangeB : GV.fg3,
-                fontWeight: tab===key ? 900 : 400, cursor:"pointer",
-                fontFamily:"inherit", fontSize:10, borderTop: tab===key ? `2px solid ${GV.orangeB}` : "2px solid transparent" }}>
-              {label}
-            </button>
-          ))}
-        </div>
 
-        {/* PROFILE / EDIT MODAL */}
+{/* PROFILE / EDIT MODAL */}
         {editingCurrentPlayer && (
           <PlayerModal player={currentPlayer} onSave={changes => handleEditPlayer(currentPlayer.id, changes)}
             onRemove={() => handleRemovePlayer(currentPlayer.id)}
             onClose={() => setEditingCurrentPlayer(false)} inputStyle={darkInput} isEdit={true} />
+        )}
+
+        {showSuggestWord && (
+          <SuggestWordModal
+            onClose={() => setShowSuggestWord(false)}
+            playerId={currentPlayer.id}
+            playerName={currentPlayer.name}
+            inputStyle={inputStyle}
+          />
+        )}
+        {showAbout && (
+          <AboutSheet onClose={() => setShowAbout(false)} />
+        )}
+        {profilePlayer && (
+          <PlayerProfileSheet
+            player={profilePlayer}
+            submissions={submissions}
+            onClose={() => setProfilePlayer(null)}
+          />
         )}
 
       </div>
